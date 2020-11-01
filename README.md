@@ -193,9 +193,9 @@ input.
 5. Scroll to the bottom and set a custom keyboard shortcut with the following
    options:
 
-   > Name: GitHub OTP  
-   > Command: otp_github  
-   > Shortcut: F12
+   > Name: **GitHub OTP**  
+   > Command: **otp_github**  
+   > Shortcut: **F12**
 
 
 [cargo]: https://doc.rust-lang.org/cargo/
