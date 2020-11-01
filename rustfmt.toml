@@ -1,0 +1,7 @@
+# Maximum width of each line
+# https://github.com/rust-lang/rustfmt/blob/master/Configurations.md#max_width
+max_width = 80
+
+# Number of spaces per tab
+# https://github.com/rust-lang/rustfmt/blob/master/Configurations.md#tab_spaces
+tab_spaces = 2
