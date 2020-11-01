@@ -193,8 +193,8 @@ input.
 5. Scroll to the bottom and set a custom keyboard shortcut with the following
    options:
 
-   > Name: GitHub OTP
-   > Command: otp_github
+   > Name: GitHub OTP  
+   > Command: otp_github  
    > Shortcut: F12
 
 
