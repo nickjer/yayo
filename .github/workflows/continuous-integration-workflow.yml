@@ -5,63 +5,39 @@ on: [push, pull_request]
 jobs:
   ci:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        target:
-          - x86_64-unknown-linux-gnu
     steps:
-      - name: Install libdbus-1-dev
-        run: sudo apt-get install libdbus-1-dev
-      - uses: actions/checkout@v1
-      - name: Cache cargo registry
-        uses: actions/cache@v1
+      - name: Install dependencies
+        run: sudo apt-get install -y libdbus-1-dev
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
         with:
-          path: ~/.cargo/registry
-          key: ${{ runner.os }}-${{ matrix.target }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
-      - name: Cache cargo index
-        uses: actions/cache@v1
-        with:
-          path: ~/.cargo/git
-          key: ${{ runner.os }}-${{ matrix.target }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
-      - name: Cache cargo bin
-        uses: actions/cache@v1
-        with:
-          path: ~/.cargo/bin
-          key: ${{ runner.os }}-${{ matrix.target }}-cargo-bin-${{ hashFiles('**/Cargo.lock') }}
-      - name: Cache cargo build
-        uses: actions/cache@v1
-        with:
-          path: target
-          key: ${{ runner.os }}-${{ matrix.target }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
           toolchain: stable
-          target: ${{ matrix.target }}
-          override: true
           components: rustfmt
       - name: Cargo build
         uses: actions-rs/cargo@v1
         with:
-          use-cross: true
           command: build
-          args: --target ${{ matrix.target }}
       - name: Cargo test
         uses: actions-rs/cargo@v1
         with:
-          use-cross: true
           command: test
-          args: --target ${{ matrix.target }}
       - name: Cargo fmt
         uses: actions-rs/cargo@v1
         with:
-          use-cross: true
           command: fmt
           args: --all -- --check
       - name: Rename binary
-        run: mv target/${{ matrix.target }}/debug/yayo yayo-${{ github.sha }}-${{ matrix.target }}
+        run: mv target/debug/yayo yayo-${{ github.sha }}
       - name: Upload artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: yayo
-          path: yayo-${{ github.sha }}-${{ matrix.target }}
+          path: yayo-${{ github.sha }}
