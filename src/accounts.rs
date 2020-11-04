@@ -18,7 +18,9 @@ impl<'a> IntoIterator for &'a Accounts {
 
 impl Accounts {
   pub fn new() -> Accounts {
-    Accounts { accounts: Vec::new() }
+    Accounts {
+      accounts: Vec::new(),
+    }
   }
 
   pub fn from_string(string: &str) -> Result<Accounts> {
