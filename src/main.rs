@@ -15,7 +15,10 @@ fn main() -> Result<()> {
   let command = Command::parse();
 
   let data_file = DataFile::new(crate_name!())?;
-  let mut accounts = Accounts::from_string(&data_file.read()?)?;
+  let mut accounts = match data_file.read()? {
+    Some(string) => Accounts::from_string(&string)?,
+    None => Accounts::new()
+  };
 
   command.sub_command.call(&mut accounts)?;
 

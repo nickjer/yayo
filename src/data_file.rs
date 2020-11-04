@@ -21,10 +21,14 @@ impl DataFile {
     })
   }
 
-  pub fn read(&self) -> Result<String> {
-    Ok(fs::read_to_string(&self.path).with_context(|| {
-      format!("Failed to read from {}", self.path.display())
-    })?)
+  pub fn read(&self) -> Result<Option<String>> {
+    if self.path.is_file() {
+      Ok(Some(fs::read_to_string(&self.path).with_context(|| {
+        format!("Failed to read from {}", self.path.display())
+      })?))
+    } else {
+      Ok(None)
+    }
   }
 
   pub fn write(&self, data: &str) -> Result<()> {

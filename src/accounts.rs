@@ -7,7 +7,20 @@ pub struct Accounts {
   accounts: Vec<Account>,
 }
 
+impl<'a> IntoIterator for &'a Accounts {
+  type Item = &'a Account;
+  type IntoIter = std::slice::Iter<'a, Account>;
+
+  fn into_iter(self) -> Self::IntoIter {
+    self.accounts.iter()
+  }
+}
+
 impl Accounts {
+  pub fn new() -> Accounts {
+    Accounts { accounts: Vec::new() }
+  }
+
   pub fn from_string(string: &str) -> Result<Accounts> {
     Ok(
       serde_json::from_str(&string)

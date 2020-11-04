@@ -19,6 +19,19 @@ impl PartialEq<String> for Account {
   }
 }
 
+impl std::fmt::Display for Account {
+  fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    write!(
+      f,
+      "Account: {}\n\
+      Algorithm: {}\n\
+      Digits: {}\n\
+      Step: {}",
+      self.name, self.algorithm, self.digits, self.step
+    )
+  }
+}
+
 impl Account {
   pub fn new(
     name: String,
