@@ -1,7 +1,7 @@
 [package]
 name = "yayo"
 description = "A CLI used to manage and generate OTP (one time password) codes for your accounts"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Jeremy Nicklas <jeremywnicklas@gmail.com>"]
 edition = "2018"
 license = "MIT"
