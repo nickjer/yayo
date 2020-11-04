@@ -165,36 +165,18 @@ input.
    $ sudo apt install -y xsel
    ```
 
-2. Create a script in a location that is read in by your `PATH` environment
-   variable (e.g., `~/bin/otp_github`):
-
-   ```shell
-   #!/usr/bin/env bash
-
-   yayo view github | xsel
-   ```
-
-   > *Note:* This will place it in middle-mouse button clipboard. If you want
-   > the Ctrl-V clipboard you will want to use `xsel -b`.
-
-3. Make this script executable:
-
-   ```console
-   $ chmod 755 ~/bin/otp_github
-   ```
-
-4. If using Gnome 3 you can just open the control center and navigate to the
+2. If using Gnome 3 you can just open the control center and navigate to the
    "Keyboard Shortcuts" with:
 
    ```console
    $ gnome-control-center
    ```
 
-5. Scroll to the bottom and set a custom keyboard shortcut with the following
+3. Scroll to the bottom and set a "Custom" keyboard shortcut with the following
    options:
 
-   > Name: **GitHub OTP**  
-   > Command: **otp_github**  
+   > Name: **OTP (GitHub)**  
+   > Command: `bash -c 'yayo view github | xsel --input --primary'`  
    > Shortcut: **F12**
 
 
