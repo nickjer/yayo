@@ -17,7 +17,7 @@ impl DataFile {
       format!("Failed to create directory {}", path.display())
     })?;
     Ok(DataFile {
-      path: path.join("data.json").to_path_buf(),
+      path: path.join("data.json"),
     })
   }
 
@@ -32,10 +32,7 @@ impl DataFile {
   }
 
   pub fn write(&self, data: &str) -> Result<()> {
-    Ok(
-      fs::write(&self.path, data).with_context(|| {
-        format!("Failed to write to {}", self.path.display())
-      })?,
-    )
+    fs::write(&self.path, data)
+      .with_context(|| format!("Failed to write to {}", self.path.display()))
   }
 }

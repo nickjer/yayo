@@ -42,14 +42,14 @@ impl<'a> Otp<'a> {
 
   fn encode_digest(&self, digest: &[u8]) -> Result<String> {
     let offset =
-      (digest.last().ok_or(anyhow!("Digest is empty"))? & 0xf) as usize;
+      (digest.last().ok_or_else(|| anyhow!("Digest is empty"))? & 0xf) as usize;
     let snum = u32::from_be_bytes([
       digest[offset],
       digest[offset + 1],
       digest[offset + 2],
       digest[offset + 3],
     ]) & 0x7fff_ffff;
-    let hotp_code = snum % (10 as u32).pow(self.digits as u32);
+    let hotp_code = snum % (10_u32).pow(self.digits as u32);
     Ok(format!("{:0length$}", hotp_code, length = self.digits))
   }
 

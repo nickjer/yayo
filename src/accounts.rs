@@ -16,6 +16,12 @@ impl<'a> IntoIterator for &'a Accounts {
   }
 }
 
+impl Default for Accounts {
+  fn default() -> Self {
+    Self::new()
+  }
+}
+
 impl Accounts {
   pub fn new() -> Accounts {
     Accounts {
@@ -24,17 +30,13 @@ impl Accounts {
   }
 
   pub fn from_string(string: &str) -> Result<Accounts> {
-    Ok(
-      serde_json::from_str(&string)
-        .context("Failed to parse serialized accounts from data file")?,
-    )
+    serde_json::from_str(&string)
+      .context("Failed to parse serialized accounts from data file")
   }
 
   pub fn to_string(&self) -> Result<String> {
-    Ok(
-      serde_json::to_string(&self)
-        .context("Failed to serialize the accounts for storing in data file")?,
-    )
+    serde_json::to_string(&self)
+      .context("Failed to serialize the accounts for storing in data file")
   }
 
   pub fn get_code(&self, name: String) -> Result<String> {
