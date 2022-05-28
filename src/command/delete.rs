@@ -1,10 +1,10 @@
 use anyhow::Result;
-use clap::Clap;
+use clap::Args;
 
 use crate::accounts::Accounts;
 
 /// Delete an account
-#[derive(Clap)]
+#[derive(Args, Debug)]
 pub struct Delete {
   /// Name of the account
   pub account: String,

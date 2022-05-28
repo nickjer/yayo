@@ -1,10 +1,10 @@
 use anyhow::Result;
-use clap::Clap;
+use clap::Args;
 
 use crate::accounts::Accounts;
 
 /// Add a new account
-#[derive(Clap)]
+#[derive(Args, Debug)]
 pub struct Add {
   /// Name of the account
   pub account: String,

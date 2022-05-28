@@ -77,7 +77,7 @@ impl Account {
       .map_err(|e| anyhow!("Failed reading secret ({:?})", e))
   }
 
-  fn keyring(&self) -> keyring::Keyring {
-    keyring::Keyring::new(crate_name!(), &self.name)
+  fn keyring(&self) -> keyring::Entry {
+    keyring::Entry::new(crate_name!(), &self.name)
   }
 }

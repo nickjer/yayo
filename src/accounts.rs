@@ -30,7 +30,7 @@ impl Accounts {
   }
 
   pub fn from_string(string: &str) -> Result<Accounts> {
-    serde_json::from_str(&string)
+    serde_json::from_str(string)
       .context("Failed to parse serialized accounts from data file")
   }
 

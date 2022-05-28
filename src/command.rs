@@ -4,7 +4,7 @@ mod list;
 mod view;
 
 use anyhow::Result;
-use clap::{crate_authors, crate_description, crate_version, Clap};
+use clap::{Parser, Subcommand};
 
 use crate::accounts::Accounts;
 use add::Add;
@@ -12,7 +12,7 @@ use delete::Delete;
 use list::List;
 use view::View;
 
-#[derive(Clap)]
+#[derive(Subcommand, Debug)]
 pub enum SubCommand {
   Add(Add),
   Delete(Delete),
@@ -31,12 +31,8 @@ impl SubCommand {
   }
 }
 
-#[derive(Clap)]
-#[clap(
-  version = crate_version!(),
-  author = crate_authors!(),
-  about = crate_description!()
-)]
+#[derive(Parser, Debug)]
+#[clap(author, version, about, long_about = None)]
 pub struct Command {
   #[clap(subcommand)]
   pub sub_command: SubCommand,

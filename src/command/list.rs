@@ -1,10 +1,10 @@
 use anyhow::Result;
-use clap::Clap;
+use clap::Args;
 
 use crate::accounts::Accounts;
 
 /// List all accounts
-#[derive(Clap)]
+#[derive(Args, Debug)]
 pub struct List {}
 
 impl List {
