@@ -28,21 +28,21 @@ https://github.com/nickjer/yayo/releases
 Check the help (`--help`) for details on using this tool:
 
 ```shell
-yayo 0.1.0
+yayo 0.2.2
 Jeremy Nicklas <jeremywnicklas@gmail.com>
-A CLI used to manage and generate OTP (one time password) codes for your accounts
+Manage and generate OTP (one time password) codes
 
 USAGE:
     yayo <SUBCOMMAND>
 
-FLAGS:
-    -h, --help       Prints help information
-    -V, --version    Prints version information
+OPTIONS:
+    -h, --help       Print help information
+    -V, --version    Print version information
 
 SUBCOMMANDS:
     add       Add a new account
     delete    Delete an account
-    help      Prints this message or the help of the given subcommand(s)
+    help      Print this message or the help of the given subcommand(s)
     list      List all accounts
     view      View the code for an account
 ```
