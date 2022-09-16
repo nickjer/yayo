@@ -27,7 +27,7 @@ https://github.com/nickjer/yayo/releases
 Check the help (`--help`) for details on using this tool:
 
 ```shell
-yayo 0.2.2
+yayo 0.2.3
 Jeremy Nicklas <jeremywnicklas@gmail.com>
 Manage and generate OTP (one time password) codes
 
