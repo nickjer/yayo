@@ -3,7 +3,6 @@
 [![Latest Version](https://img.shields.io/crates/v/yayo.svg)](https://crates.io/crates/yayo)
 [![Downloads](https://img.shields.io/crates/d/yayo.svg)](https://crates.io/crates/yayo)
 [![License](https://img.shields.io/github/license/nickjer/yayo.svg)](https://github.com/nickjer/yayo)
-[![Docs](https://docs.rs/yayo/badge.svg)](https://docs.rs/yayo/)
 [![Continuous Integration Status](https://github.com/nickjer/yayo/workflows/Continuous%20integration/badge.svg)](https://github.com/nickjer/yayo/actions)
 
 A command line interface (CLI) used to manage and generate OTP (one time
