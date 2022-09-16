@@ -1,7 +1,7 @@
 # Yayo
 
 [![Latest Version](https://img.shields.io/crates/v/yayo.svg)](https://crates.io/crates/yayo)
-[![Downloads](https://img.shields.io/crates/d/yayo.svg)](https://crates.io/crates/yayo)
+[![Downloads](https://img.shields.io/github/downloads/nickjer/yayo/total.svg)](https://github.com/nickjer/yayo/releases)
 [![License](https://img.shields.io/github/license/nickjer/yayo.svg)](https://github.com/nickjer/yayo)
 [![Continuous Integration Status](https://github.com/nickjer/yayo/workflows/Continuous%20integration/badge.svg)](https://github.com/nickjer/yayo/actions)
 
