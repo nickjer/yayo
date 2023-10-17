@@ -179,7 +179,7 @@ input.
    options:
 
    > Name: **OTP (GitHub)**  
-   > Command: `bash -c 'yayo view github | xsel --input --primary'`  
+   > Command: `sh -c '~/bin/yayo view github | xsel --primary'`
    > Shortcut: **F12**
 
 
