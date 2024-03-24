@@ -6,54 +6,37 @@ on:
       - 'v*' # Push events to matching v*, i.e., v1.0
 
 jobs:
-  create_release:
+  release:
     name: Create release
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        target:
+          - x86_64-unknown-linux-gnu
+          - x86_64-unknown-linux-musl
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         with:
           path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            target
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-      - uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-${{ matrix.target }}-cargo-${{ hashFiles('**/Cargo.lock') }}
       - name: Cargo build
         uses: actions-rs/cargo@v1
         with:
+          use-cross: true
           command: build
-          args: --release --jobs 2
-      - name: Strip symbols from asset
-        run: strip target/release/yayo
+          args: --target ${{ matrix.target }} --release --jobs 2
       - name: Compress asset
-        run: tar -C target/release -czf yayo.tar.gz yayo
-      - name: Get release file name
-        id: get_release_info
         run: |
-          echo ::set-output name=file_name::yayo-${TAG_REF_NAME#refs/tags/}-x86_64-unknown-linux-gnu
-        env:
-          TAG_REF_NAME: ${{ github.ref }}
-      - name: Create release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tar -C target/${{ matrix.target }}/release \
+            -czf "yayo-${{ github.ref_name }}-${{ matrix.target }}.tar.gz" \
+            yayo
+      - name: Release
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-      - name: Upload artifact
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./yayo.tar.gz
-          asset_name: ${{ steps.get_release_info.outputs.file_name }}.tar.gz
-          asset_content_type: application/gzip
+          files: "yayo-*.tar.gz"
