@@ -16,7 +16,7 @@ pub struct Add {
     long,
     env = "YAYO_ALGORITHM",
     default_value = "SHA1",
-    possible_values = &["SHA1", "SHA256", "SHA512"]
+    value_parser = ["SHA1", "SHA256", "SHA512"]
   )]
   pub algorithm: String,
   /// Number of digits composing code

@@ -78,6 +78,6 @@ impl Account {
   }
 
   fn keyring(&self) -> keyring::Entry {
-    keyring::Entry::new(crate_name!(), &self.name)
+    keyring::Entry::new(crate_name!(), &self.name).unwrap()
   }
 }
