@@ -20,30 +20,28 @@ cargo install yayo
 
 An alternative method is to download and run the pre-compiled binaries:
 
-https://github.com/nickjer/yayo/releases
+<https://github.com/nickjer/yayo/releases>
 
 ## Usage
 
 Check the help (`--help`) for details on using this tool:
 
 ```shell
-yayo 0.2.3
-Jeremy Nicklas <jeremywnicklas@gmail.com>
 Manage and generate OTP (one time password) codes
 
-USAGE:
-    yayo <SUBCOMMAND>
+Usage: yayo <COMMAND>
 
-OPTIONS:
-    -h, --help       Print help information
-    -V, --version    Print version information
+Commands:
+  add         Add a new account
+  completion  Output shell completion
+  delete      Delete an account
+  list        List all accounts
+  view        View the code for an account
+  help        Print this message or the help of the given subcommand(s)
 
-SUBCOMMANDS:
-    add       Add a new account
-    delete    Delete an account
-    help      Print this message or the help of the given subcommand(s)
-    list      List all accounts
-    view      View the code for an account
+Options:
+  -h, --help     Print help
+  -V, --version  Print version
 ```
 
 ### Add Account
@@ -54,22 +52,17 @@ The `add` subcommand is used to add an account:
 yayo-add
 Add a new account
 
-USAGE:
-    yayo add [OPTIONS] <account> <secret>
+Usage: yayo add [OPTIONS] <ACCOUNT> <SECRET>
 
-ARGS:
-    <account>    Name of the account
-    <secret>     Secret key used to generate code
+Arguments:
+  <ACCOUNT>  Name of the account
+  <SECRET>   Secret key used to generate code
 
-FLAGS:
-    -h, --help       Prints help information
-    -V, --version    Prints version information
-
-OPTIONS:
-    -a, --algorithm <algorithm>    Algorithm used to generate code [env: YAYO_ALGORITHM=] [default:
-                                   SHA1] [possible values: SHA1, SHA256, SHA512]
-    -d, --digits <digits>          Number of digits composing code [env: YAYO_DIGITS=] [default: 6]
-    -s, --step <step>              Duration in seconds of step [env: YAYO_STEP=] [default: 30]
+Options:
+  -a, --algorithm <ALGORITHM>  Algorithm used to generate code [env: YAYO_ALGORITHM=] [default: SHA1] [possible values: SHA1, SHA256, SHA512]
+  -d, --digits <DIGITS>        Number of digits composing code [env: YAYO_DIGITS=] [default: 6]
+  -s, --step <STEP>            Duration in seconds of step [env: YAYO_STEP=] [default: 30]
+  -h, --help                   Print help
 ```
 
 > *Note:* For added security it stores all secrets in your operating system's
@@ -77,8 +70,8 @@ OPTIONS:
 
 **Example:** Add your GitHub account with provided secret (`XXXXXXX`):
 
-```console
-$ yayo add github XXXXXXX
+```shell
+yayo add github XXXXXXX
 ```
 
 Although it is not recommended, you can alter any of the arguments used in the
@@ -93,21 +86,19 @@ The `delete` subcommand is used to delete a previously added account:
 yayo-delete
 Delete an account
 
-USAGE:
-    yayo delete <account>
+Usage: yayo delete <ACCOUNT>
 
-ARGS:
-    <account>    Name of the account
+Arguments:
+  <ACCOUNT>  Name of the account
 
-FLAGS:
-    -h, --help       Prints help information
-    -V, --version    Prints version information
+Options:
+  -h, --help  Print help
 ```
 
 **Example:** Delete the previously added GitHub account:
 
-```console
-$ yayo delete github
+```shell
+yayo delete github
 ```
 
 ### List All Accounts
@@ -119,12 +110,10 @@ configurations:
 yayo-list
 List all accounts
 
-USAGE:
-    yayo list
+Usage: yayo list
 
-FLAGS:
-    -h, --help       Prints help information
-    -V, --version    Prints version information
+Options:
+  -h, --help  Print help
 ```
 
 ### View Account
@@ -136,15 +125,13 @@ requested account:
 yayo-view
 View the code for an account
 
-USAGE:
-    yayo view <account>
+Usage: yayo view <ACCOUNT>
 
-ARGS:
-    <account>    Name of the account
+Arguments:
+  <ACCOUNT>  Name of the account
 
-FLAGS:
-    -h, --help       Prints help information
-    -V, --version    Prints version information
+Options:
+  -h, --help  Print help
 ```
 
 **Example:** View the OTP for the GitHub account:
@@ -153,6 +140,32 @@ FLAGS:
 $ yayo view github
 389200
 ```
+
+### Command Completion
+
+The `completion` subcommand is used to output a shell script used to support
+command completion for this binary:
+
+```shell
+yayo-completion
+Output shell completion
+
+Usage: yayo completion <SHELL>
+
+Arguments:
+  <SHELL>  Name of the shell [possible values: bash, elvish, fish, powershell, zsh]
+
+Options:
+  -h, --help  Print help
+```
+
+**Example:** Output command completion for the fish shell:
+
+```shell
+yayo completion fish | source
+```
+
+Now you can use tab-completion with `yayo`.
 
 ## Linux (Gnome) - Keyboard Shortcut to Clipboard
 
@@ -164,23 +177,22 @@ input.
 1. You will need `xsel` or some other CLI that can read the contents of STDOUT
    to the clipboard:
 
-   ```console
-   $ sudo apt install -y xsel
+   ```shell
+   sudo apt install -y xsel
    ```
 
 2. If using Gnome 3 you can just open the control center and navigate to the
    "Keyboard Shortcuts" with:
 
-   ```console
-   $ gnome-control-center
+   ```shell
+   gnome-control-center
    ```
 
 3. Scroll to the bottom and set a "Custom" keyboard shortcut with the following
    options:
 
-   > Name: **OTP (GitHub)**  
+   > Name: **OTP (GitHub)**
    > Command: `sh -c '~/bin/yayo view github | xsel --primary'`
    > Shortcut: **F12**
-
 
 [cargo]: https://doc.rust-lang.org/cargo/
