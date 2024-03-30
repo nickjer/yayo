@@ -49,7 +49,6 @@ Options:
 The `add` subcommand is used to add an account:
 
 ```shell
-yayo-add
 Add a new account
 
 Usage: yayo add [OPTIONS] <ACCOUNT> <SECRET>
@@ -83,7 +82,6 @@ or through environment variables.
 The `delete` subcommand is used to delete a previously added account:
 
 ```shell
-yayo-delete
 Delete an account
 
 Usage: yayo delete <ACCOUNT>
@@ -107,7 +105,6 @@ The `list` subcommand is used to list all available accounts and their provided
 configurations:
 
 ```shell
-yayo-list
 List all accounts
 
 Usage: yayo list
@@ -122,7 +119,6 @@ The `view` subcommand is used to output the OTP code generated for the
 requested account:
 
 ```shell
-yayo-view
 View the code for an account
 
 Usage: yayo view <ACCOUNT>
@@ -147,7 +143,6 @@ The `completion` subcommand is used to output a shell script used to support
 command completion for this binary:
 
 ```shell
-yayo-completion
 Output shell completion
 
 Usage: yayo completion <SHELL>
