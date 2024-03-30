@@ -1,5 +1,5 @@
 use anyhow::Result;
-use clap::Args;
+use clap::{Args, ValueHint};
 
 use crate::accounts::Accounts;
 
@@ -7,6 +7,7 @@ use crate::accounts::Accounts;
 #[derive(Args, Debug)]
 pub struct View {
   /// Name of the account
+  #[clap(value_hint = ValueHint::Other)]
   pub account: String,
 }
 

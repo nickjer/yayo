@@ -1,5 +1,5 @@
 use anyhow::Result;
-use clap::Args;
+use clap::{Args, ValueHint};
 
 use crate::accounts::Accounts;
 
@@ -7,8 +7,10 @@ use crate::accounts::Accounts;
 #[derive(Args, Debug)]
 pub struct Add {
   /// Name of the account
+  #[clap(value_hint = ValueHint::Other)]
   pub account: String,
   /// Secret key used to generate code
+  #[clap(value_hint = ValueHint::Other)]
   pub secret: String,
   /// Algorithm used to generate code
   #[clap(
@@ -20,10 +22,22 @@ pub struct Add {
   )]
   pub algorithm: String,
   /// Number of digits composing code
-  #[clap(short, long, env = "YAYO_DIGITS", default_value = "6")]
+  #[clap(
+    short,
+    long,
+    env = "YAYO_DIGITS",
+    default_value = "6",
+    value_hint = ValueHint::Other
+  )]
   pub digits: usize,
   /// Duration in seconds of step
-  #[clap(short, long, env = "YAYO_STEP", default_value = "30")]
+  #[clap(
+    short,
+    long,
+    env = "YAYO_STEP",
+    default_value = "30",
+    value_hint = ValueHint::Other
+  )]
   pub step: u64,
 }
 

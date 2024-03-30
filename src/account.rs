@@ -64,7 +64,7 @@ impl Account {
   pub fn get_code(&self) -> Result<String> {
     let time = SystemTime::now()
       .duration_since(SystemTime::UNIX_EPOCH)?
-      .as_secs() as u64;
+      .as_secs();
     let secret = self.get_secret()?;
     let otp = Otp::new(&secret, self.algorithm.trim(), self.digits, self.step);
     otp.get_code(time)
