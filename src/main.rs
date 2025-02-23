@@ -5,7 +5,7 @@ mod data_file;
 mod otp;
 
 use anyhow::Result;
-use clap::{crate_name, Parser};
+use clap::{Parser, crate_name};
 
 use accounts::Accounts;
 use command::Command;

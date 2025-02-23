@@ -1,4 +1,4 @@
-use anyhow::{anyhow, Context, Result};
+use anyhow::{Context, Result, anyhow};
 use data_encoding::BASE32_NOPAD;
 use ring::hmac;
 

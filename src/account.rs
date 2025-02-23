@@ -1,4 +1,4 @@
-use anyhow::{anyhow, Result};
+use anyhow::{Result, anyhow};
 use clap::crate_name;
 use serde::{Deserialize, Serialize};
 use std::time::SystemTime;

@@ -1,6 +1,6 @@
 use anyhow::Result;
-use clap::{crate_name, Args, CommandFactory};
-use clap_complete::{generate, Shell};
+use clap::{Args, CommandFactory, crate_name};
+use clap_complete::{Shell, generate};
 
 use super::Command;
 
