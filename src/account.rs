@@ -57,7 +57,7 @@ impl Account {
   pub fn delete_secret(&self) -> Result<()> {
     self
       .keyring()
-      .delete_password()
+      .delete_credential()
       .map_err(|e| anyhow!("Failed deleting secret ({:?})", e))
   }
 
